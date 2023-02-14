@@ -29,8 +29,8 @@ let loadDayForecastData = () => {
 }
 
 let loadWeekForecastData = () => {
-    let {day, text, date, temperature, icon} = forecast_week[0];	
-    let {min, max} = temperature;
+    let {day, text, date, temperature : { min, max }, icon} = forecast_week[0];	
+    // let {min, max} = temperature;
     let listOfForecast= document.getElementsByClassName('list-group') ;
     let contenido = `<li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
     <div class="d-flex flex-column">
@@ -47,5 +47,16 @@ let loadWeekForecastData = () => {
 }
 
 
-loadDayForecastData();
-loadWeekForecastData();
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadDayForecastData('Guayaquil');
+});
+
+
+let botonCargar = document.getElementById("loadinfo");
+botonCargar.addEventListener('click', (event) => {
+    loadWeekForecastData();
+});
+
+
+

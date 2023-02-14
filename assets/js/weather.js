@@ -1,8 +1,6 @@
 
 import { weather_data } from './data.js';
 
-
-
 let loadDayForecastData = (ciudadSeleccionada) => {
     let dataCiudad = weather_data.find( e => e.city === ciudadSeleccionada);
     
@@ -90,8 +88,6 @@ let loadCiudad = () => {
         objCiudades.innerHTML += `<option class="dropdown-item" value="${e}">${e}</option>`;
     });
 }
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
     loadCiudad();

@@ -2,12 +2,12 @@
 import { weather_data } from './data.js';
 
 let loadDayForecastData = (ciudadSeleccionada) => {
-    let dataCiudad = weather_data.find( e => e.city === ciudadSeleccionada);
+    let dataCiudad = weather_data.find( element => element.city === ciudadSeleccionada);
     
     let {city, maxtemperature, mintemperature, cloudiness, wind, rainfall, forecast_today} = dataCiudad;
     let [late, night] = forecast_today;
-    let { text: textLate, temperature: temperatureLate, forecast: forecastLate, icon: iconLate } = late;
-    let { text: textNight, temperature: temperatureNight, forecast: forecastNight, icon: iconNight } = night;
+    let {text: textLate, temperature: temperatureLate, forecast: forecastLate, icon: iconLate} = late;
+    let {text: textNight, temperature: temperatureNight, forecast: forecastNight, icon: iconNight} = night;
 
 	let ciudad = document.getElementById ('city');
     ciudad.innerHTML = city;
@@ -83,9 +83,9 @@ let loadWeekForecastData = (ciudadSeleccionada) => {
 
 let loadCiudad = () => {
     let objCiudades = document.getElementById('dropdownMenuButton');
-    let ciudades = weather_data.map(e => e.city);
-    ciudades.map(e => {
-        objCiudades.innerHTML += `<option class="dropdown-item" value="${e}">${e}</option>`;
+    let ciudades = weather_data.map(element => element.city);
+    ciudades.map(element => {
+        objCiudades.innerHTML += `<option class="dropdown-item" value="${element}">${element}</option>`;
     });
 }
 
@@ -103,7 +103,6 @@ btnCiudad.addEventListener('change', (event) => {
 
 let botonCargar = document.getElementById("loadinfo");
 botonCargar.addEventListener('click', (event) => {
-    //  loadWeekForecastData();
     let ciudadSeleccionada = document.getElementById("dropdownMenuButton").value;
     loadWeekForecastData(ciudadSeleccionada);    
 });

@@ -2,9 +2,10 @@
 import { weather_data } from './data.js';
 
 let loadDayForecastData = (ciudadSeleccionada) => {
-    let dataCiudad = weather_data.find( element => element.city === ciudadSeleccionada);
-    
-    let {city, maxtemperature, mintemperature, cloudiness, wind, rainfall, forecast_today} = dataCiudad;
+    let arrayCiudad = weather_data.filter(element => element.city === ciudadSeleccionada);
+    let [objCiudad] = arrayCiudad;
+    //console.log (objCiudad);
+    let {city, maxtemperature, mintemperature, cloudiness, wind, rainfall, forecast_today} = objCiudad;
     let [late, night] = forecast_today;
     let {text: textLate, temperature: temperatureLate, forecast: forecastLate, icon: iconLate} = late;
     let {text: textNight, temperature: temperatureNight, forecast: forecastNight, icon: iconNight} = night;
@@ -59,13 +60,15 @@ let loadDayForecastData = (ciudadSeleccionada) => {
 }
 
 let loadWeekForecastData = (ciudadSeleccionada) => {
-    let dataCiudad = weather_data.find( e => e.city === ciudadSeleccionada);
-    let {forecast_week} = dataCiudad;
+    let arrayCiudad = weather_data.filter(element => element.city === ciudadSeleccionada);
+    let [objCiudad] = arrayCiudad;
+    //console.log (objCiudad);
+    let {forecast_week} = objCiudad;
     let ListForecastWeek = document.getElementById("forecastweek");
     let contenido = '';
    
-    forecast_week.map(e => {
-        let {text, date, temperature : { min, max }, icon} = e;	
+    forecast_week.map(element => {
+        let {text, date, temperature : {min, max}, icon} = element;	
         contenido += `<li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                     <div class="d-flex flex-column">
                     <h6 class="mb-1 text-dark font-weight-bold text-sm">${text}</h6>
